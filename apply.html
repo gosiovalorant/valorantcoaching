@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gosio | Valorant コーチング</title>
+    <meta name="description" content="最高レディアント・YouTube登録者5万人超のgosioによるValorantコーチング。論理的・個別対応で確実に上達。">
+    <meta property="og:title" content="gosio | Valorant コーチング">
+    <meta property="og:description"
+        content="最高レディアント・YouTube登録者5万人超のgosioによるValorantコーチング。「誰でもイモータルになれる」とは言いません。あなたに合った方法で、確実に成長を。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gosio-coaching.vercel.app">
+    <meta property="og:image" content="gosio-icon.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@fps_user01">
+    <link rel="icon" href="gosio-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Simple Header -->
+    <header class="simple-header">
+        <div class="container">
+            <div class="nav-logo">
+                <span class="logo-text">gosio</span>
+                <span class="logo-tag">coaching</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Application Form Section -->
+    <section class="apply" id="apply">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">コーチングお申込みフォーム</h2>
+                <p class="section-subtitle">
+                    以下のフォームよりご連絡ください。<br>
+                    内容を確認後、Discordにて日程調整等のご連絡を差し上げます。
+                </p>
+            </div>
+
+            <div class="apply-container">
+                <form class="apply-form" id="applyForm">
+                    <div class="form-group">
+                        <label for="name">お名前 (ハンドルネーム可)</label>
+                        <input type="text" id="name" name="name" required placeholder="例: gosio">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス (必須)</label>
+                        <input type="email" id="email" name="email" required placeholder="例: your-email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="discordId">Discord ID (必須)</label>
+                        <input type="text" id="discordId" name="discordId" required placeholder="例: gosio">
+                    </div>
+                    <div class="form-group">
+                        <label for="rank">現在のランク帯</label>
+                        <select id="rank" name="rank" required>
+                            <option value="" disabled selected>選択してください</option>
+                            <option value="iron">アイアン</option>
+                            <option value="bronze">ブロンズ</option>
+                            <option value="silver">シルバー</option>
+                            <option value="gold">ゴールド</option>
+                            <option value="platinum">プラチナ</option>
+                            <option value="diamond">ダイヤモンド</option>
+                            <option value="ascendant">アセンダント</option>
+                            <option value="immortal">イモータル</option>
+                            <option value="radiant">レディアント</option>
+                            <option value="unranked">未ランク / 不明</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">希望コース</label>
+                        <select id="course" name="course" required>
+                            <option value="" disabled selected>選択してください</option>
+                            <option value="monthly">月額コース（¥15,000/月）</option>
+                            <option value="basic6">基本6回コース（¥39,800）</option>
+                            <option value="challenge">チャレンジコース（¥78,000）</option>
+                            <option value="custom">マンツーマン付きっきり（要相談）</option>
+                            <option value="undecided">まだ決めていない / 相談したい</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="intensity">希望の強度プラン</label>
+                        <select id="intensity" name="intensity">
+                            <option value="" disabled selected>選択してください</option>
+                            <option value="normal">通常運行</option>
+                            <option value="sparta">スパルタ</option>
+                            <option value="relaxed">ゆるゆる</option>
+                            <option value="undecided">まだ決めていない</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>初回希望日時（3つの候補と、参加可能な時間帯を入力）</label>
+                        <p class="form-note">※初回コーチングは1.5時間程度かかります。時間に余裕のある日時を指定してください。</p>
+                        <div class="schedule-rows">
+                            <div class="schedule-item">
+                                <label class="sub-label">第1候補</label>
+                                <div class="schedule-inputs">
+                                    <input type="date" name="date1" required>
+                                    <div class="time-range">
+                                        <select name="timeStart1" class="time-select" required>
+                                            <option value="">開始</option>
+                                        </select>
+                                        <span>～</span>
+                                        <select name="timeEnd1" class="time-select" required>
+                                            <option value="">終了</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <label class="sub-label">第2候補</label>
+                                <div class="schedule-inputs">
+                                    <input type="date" name="date2" required>
+                                    <div class="time-range">
+                                        <select name="timeStart2" class="time-select" required>
+                                            <option value="">開始</option>
+                                        </select>
+                                        <span>～</span>
+                                        <select name="timeEnd2" class="time-select" required>
+                                            <option value="">終了</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <label class="sub-label">第3候補</label>
+                                <div class="schedule-inputs">
+                                    <input type="date" name="date3" required>
+                                    <div class="time-range">
+                                        <select name="timeStart3" class="time-select" required>
+                                            <option value="">開始</option>
+                                        </select>
+                                        <span>～</span>
+                                        <select name="timeEnd3" class="time-select" required>
+                                            <option value="">終了</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">その他ご質問・メッセージ（任意）</label>
+                        <textarea id="message" name="message" rows="4"
+                            placeholder="目標ランク、プレイ頻度、気になること等をご自由にお書きください"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>返金ポリシー (必須)</label>
+                        <div class="policy-box">
+                            <h4>Valorantコーチング 返金ポリシー</h4>
+                            <p>本ポリシーは、Valorantコーチングサービスに関する返金条件を定めるものです。お申し込みいただいた時点で、本ポリシーに同意いただいたものとみなします。</p>
+
+                            <h5>1. 返金不可の条件</h5>
+                            <p>以下のいずれかに該当する場合、お客様のご都合による途中キャンセルおよび返金は一切受け付けません。</p>
+                            <ul>
+                                <li>お客様のスケジュール変更や都合によるキャンセル</li>
+                                <li>途中でのコーチング内容への不満</li>
+                                <li>インターネット環境やデバイスの問題によりセッションを正常に受講できない場合</li>
+                                <li>一度提供されたコーチングセッションの返金要求</li>
+                                <li>チート行為・不正行為などが確認された場合</li>
+                            </ul>
+
+                            <h5>2. 返金が適用される条件</h5>
+                            <p>以下の条件に該当する場合、未提供分のコーチング料金を返金いたします。</p>
+                            <ul>
+                                <li>コーチ側の都合により、サービスを正常に提供できなかった場合（体調不良、急用など）</li>
+                                <li>天災やサーバートラブルなど、外的要因によりサービス提供が困難となった場合</li>
+                                <li>その他、運営側が合理的と判断した場合</li>
+                            </ul>
+
+                            <h5>3. 返金申請方法</h5>
+                            <p>返金対象となる場合、お客様は以下の手順で返金申請を行ってください。</p>
+                            <ol>
+                                <li>返金申請の理由を明記し、Discordのメッセージまたは指定の連絡方法にてご連絡ください。</li>
+                                <li>申請内容を確認後、7営業日以内に対応可否をお知らせいたします。</li>
+                                <li>承認された場合、指定の決済方法に基づき、未提供分の残額を返金いたします。</li>
+                            </ol>
+
+                            <h5>4. 免責事項</h5>
+                            <p>本サービスは、お客様のゲームスキル向上を目的として提供されますが、特定の結果（ランクアップ、特定スキルの習得等）を保証するものではありません。また、コーチングの効果には個人差があるため、効果の有無を理由とした返金はお受けできません。
+                            </p>
+                            <p>本ポリシーは、必要に応じて予告なく変更される場合がありますので、ご了承ください。</p>
+                        </div>
+                        <div class="policy-check">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="policyAgree" required>
+                                <span>上記の返金ポリシーを読み、同意します</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="submit-area">
+                        <p class="submit-note">※送信完了画面に、連絡先のDiscord ID（gosio）が表示されます。<br>お手数ですが、そちらへフレンド申請をお願いいたします。
+                        </p>
+                        <button type="submit" class="apply-btn" id="submitBtn">
+                            申し込みを送信する
+                            <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="logo-text">gosio</span>
+                <span class="logo-tag">coaching</span>
+            </div>
+            <div class="footer-links">
+                <!-- External links removed to prevent drop-off -->
+            </div>
+            <p class="footer-copy">&copy; 2026 gosio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
