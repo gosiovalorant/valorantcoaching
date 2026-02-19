@@ -23,7 +23,73 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css?v=2.0">
+    <!-- Inline Critical CSS for Policy Box to bypass cache issues -->
+    <style>
+        .policy-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            height: 200px;
+            overflow-y: scroll;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            scrollbar-width: thin;
+            scrollbar-color: #ff4655 rgba(255, 255, 255, 0.05);
+        }
+
+        .policy-box h4 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 8px;
+            position: sticky;
+            top: 0;
+            background: #0f1923;
+            padding: 4px 0;
+        }
+
+        .policy-box h5 {
+            color: #ff4655;
+            font-size: 14px;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+
+        .policy-box ul,
+        .policy-box ol {
+            padding-left: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .policy-check {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 212, 170, 0.05);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 170, 0.2);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #ff4655;
+            cursor: pointer;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -233,6 +299,32 @@
         </div>
     </footer>
 
+    <script>
+        // Inline script to populate time selects immediately to avoid cache issues
+        document.addEventListener('DOMContentLoaded', () => {
+            const selects = document.querySelectorAll('.time-select');
+            if (selects.length === 0) return;
+
+            let optionsHtml = '';
+            for (let i = 6; i <= 29; i++) {
+                const hour = i;
+                // Use hourStr for display if desired, but keeping original logic for consistency with value
+                optionsHtml += `<option value="${hour}:00">${hour}:00</option>`;
+                if (i !== 29) {
+                    optionsHtml += `<option value="${hour}:30">${hour}:30</option>`;
+                }
+            }
+
+            selects.forEach(select => {
+                // Skip if already populated (in case external script runs properly too)
+                if (select.options.length > 1) return;
+
+                const isStart = select.name.includes('Start');
+                const defaultText = isStart ? '〜時から' : '〜時まで';
+                select.innerHTML = `<option value="" disabled selected>${defaultText}</option>` + optionsHtml;
+            });
+        });
+    </script>
     <script src="script.js?v=2.0"></script>
 </body>
 
