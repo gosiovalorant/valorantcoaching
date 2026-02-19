@@ -169,6 +169,31 @@ function initForm() {
     // ★ Discord Webhook URL をここに設定してください ★
     // ================================================
     const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1473819922378260551/a2sGx1DJjerrGDqxc2L1vZ06gjk2-icR6QoKHQo73rpTQihyzSNV40-GXmURWyCgMMVS';
+    // ★ 以下のIDをあなたのDiscord IDに書き換えてください ★
+    const COACH_DISCORD_ID = 'gosio';
+
+    // Populate time selects with 30-minute intervals (06:00 - 29:00)
+    const populateTimeSelects = () => {
+        const selects = document.querySelectorAll('.time-select');
+        if (selects.length === 0) return;
+
+        let optionsHtml = '';
+        for (let i = 6; i <= 29; i++) {
+            const hour = i;
+            const hourStr = (i < 24 ? i : i - 24).toString().padStart(2, '0');
+            optionsHtml += `<option value="${hour}:00">${hour}:00</option>`;
+            if (i !== 29) {
+                optionsHtml += `<option value="${hour}:30">${hour}:30</option>`;
+            }
+        }
+
+        selects.forEach(select => {
+            const isStart = select.name.includes('Start');
+            const defaultText = isStart ? '〜時から' : '〜時まで';
+            select.innerHTML = `<option value="" disabled selected>${defaultText}</option>` + optionsHtml;
+        });
+    };
+    populateTimeSelects();
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -216,9 +241,9 @@ function initForm() {
                 { name: 'ランク帯', value: formData.rank, inline: true },
                 { name: '希望コース', value: formData.course, inline: true },
                 { name: '強度プラン', value: formData.intensity, inline: true },
-                { name: '📅 第1候補', value: dateStr1, inline: false },
-                { name: '📅 第2候補', value: dateStr2, inline: false },
-                { name: '📅 第3候補', value: dateStr3, inline: false },
+                { name: '📅 第1候補 (参加可能)', value: dateStr1, inline: false },
+                { name: '📅 第2候補 (参加可能)', value: dateStr2, inline: false },
+                { name: '📅 第3候補 (参加可能)', value: dateStr3, inline: false },
                 { name: 'メッセージ', value: formData.message },
             ],
             timestamp: new Date().toISOString(),
@@ -249,14 +274,53 @@ function initForm() {
 
         if (success) {
             form.innerHTML = `
-                <div class="form-success">
-                    <div class="form-success-icon">✓</div>
-                    <h3>お申し込みありがとうございます！</h3>
-                    <p>内容を確認次第、Discordでご連絡いたします。<br>
-                    （申請が届きますので承認をお願いします）<br>
-                    通常1〜2日以内にご返信いたします。</p>
-                </div>
-            `;
+                    <div class="form-success">
+                        <div class="form-success-icon">✓</div>
+                        <h3>お申し込みありがとうございます！</h3>
+                        <p>スムーズな連絡のため、以下のどちらかのIDへ<strong>フレンド申請</strong>を送ってください。</p>
+                        
+                        <div class="discord-id-wrapper">
+                            <div class="discord-id-box">
+                                <span class="discord-label">ユーザー名:</span>
+                                <span class="discord-id">gosio</span>
+                                <button type="button" class="copy-btn" onclick="navigator.clipboard.writeText('gosio').then(()=>alert('コピーしました！'))">コピー</button>
+                            </div>
+                            <div class="discord-id-box">
+                                <span class="discord-label">ユーザーID:</span>
+                                <span class="discord-id">393437223351222272</span>
+                                <button type="button" class="copy-btn" onclick="navigator.clipboard.writeText('393437223351222272').then(()=>alert('コピーしました！'))">コピー</button>
+                            </div>
+                        </div>
+
+                        <div class="discord-howto">
+                            <h4>Discordフレンド申請のやり方</h4>
+                            
+                            <div class="discord-howto-section">
+                                <h5>🖥️ PC / ブラウザ</h5>
+                                <ol>
+                                    <li>左上のDiscordロゴを押す</li>
+                                    <li>「フレンド」タブ → 「フレンドに追加」ボタンを押す</li>
+                                    <li>上のユーザー名を入力して「フレンド申請を送信」</li>
+                                </ol>
+                            </div>
+
+                            <div class="discord-howto-section">
+                                <h5>📱 スマホ</h5>
+                                <ol>
+                                    <li>アプリ左下のナビゲーション または 左上のチャットバブル💬をタップ</li>
+                                    <li>「フレンドを追加」をタップ（右上の人型アイコンなど）</li>
+                                    <li>「ユーザー名で追加」等を選び、上のユーザー名を入力して送信</li>
+                                </ol>
+                            </div>
+                            <p class="howto-note">※「ユーザー名」は正確に入力してください（コピペ推奨）</p>
+                        </div>
+
+                        <p class="success-note">
+                            ※申請が届き次第、承認して詳細をご案内します。<br>
+                            もし申請できない場合は、ご入力いただいたIDへこちらから連絡します。
+                        </p>
+                    </div>
+                `;
         } else {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;

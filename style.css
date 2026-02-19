@@ -1685,11 +1685,226 @@ img {
     flex: 1.5;
 }
 
-.time-range input[type="time"] {
+.time-select {
     flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: var(--font-size-sm);
+    appearance: none;
+    /* Remove default arrow */
+    cursor: pointer;
+    text-align: center;
+}
+
+.time-select:focus {
+    border-color: var(--color-primary);
+    outline: none;
 }
 
 .time-range span {
     color: var(--color-text-muted);
     font-weight: bold;
+}
+
+/* Success Message Styles */
+.form-success {
+    text-align: center;
+    padding: var(--space-xl) var(--space-md);
+    background: rgba(46, 213, 115, 0.1);
+    border: 1px solid #2ed573;
+    border-radius: var(--radius-md);
+    animation: fadeIn 0.5s ease;
+}
+
+.form-success-icon {
+    width: 60px;
+    height: 60px;
+    background: #2ed573;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto var(--space-md);
+}
+
+.form-success h3 {
+    margin-bottom: var(--space-md);
+    color: #2ed573;
+}
+
+.form-success p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.discord-id-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    margin: 0 auto var(--space-md);
+    border: 1px solid var(--color-border);
+    max-width: 350px;
+    width: 100%;
+}
+
+.discord-id-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.discord-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.submit-area {
+    text-align: center;
+}
+
+.submit-note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+}
+
+.apply-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: 16px 32px;
+    background: var(--color-primary);
+    color: white;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(255, 70, 85, 0.3);
+}
+
+.apply-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 70, 85, 0.4);
+}
+
+.apply-btn:active {
+    transform: translateY(0);
+}
+
+.apply-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.discord-howto {
+    background: rgba(0, 0, 0, 0.2);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    text-align: left;
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-sm);
+}
+
+.discord-howto h4 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+}
+
+.discord-howto ol {
+    padding-left: 20px;
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+.discord-howto li {
+    margin-bottom: 4px;
+}
+
+.discord-howto-section {
+    margin-bottom: var(--space-md);
+}
+
+.discord-howto-section:last-child {
+    margin-bottom: 0;
+}
+
+.discord-howto h5 {
+    font-size: var(--font-size-xs);
+    color: var(--color-primary);
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.howto-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+}
+
+.discord-id {
+    font-family: monospace;
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.copy-btn {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.success-note {
+    font-size: var(--font-size-xs);
+    opacity: 0.8;
+}
+
+/* Date Picker Visibility Improvements */
+.form-group input[type="date"] {
+    background: #ffffff;
+    color: #000000;
+    color-scheme: light;
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: none;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
 }
