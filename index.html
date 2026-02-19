@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>gosio | Valorant コーチング</title>
     <meta name="description" content="最高レディアント・YouTube登録者5万人超のgosioによるValorantコーチング。論理的・個別対応で確実に上達。">
     <meta property="og:title" content="gosio | Valorant コーチング">
@@ -20,6 +23,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -441,7 +445,7 @@
                         <li>チャットサポート無制限</li>
                         <li>宿題・フィードバックあり</li>
                     </ul>
-                    <a href="#apply" class="btn btn-outline btn-block">このコースで申し込む</a>
+                    <a href="apply.html" class="btn btn-outline btn-block">このコースで申し込む</a>
                 </div>
 
                 <div class="pricing-card pricing-card-featured">
@@ -462,7 +466,7 @@
                         <li>チャットサポート無制限</li>
                         <li>宿題・フィードバックあり</li>
                     </ul>
-                    <a href="#apply" class="btn btn-primary btn-block">このコースで申し込む</a>
+                    <a href="apply.html" class="btn btn-primary btn-block">このコースで申し込む</a>
                 </div>
 
                 <div class="pricing-card">
@@ -481,7 +485,7 @@
                         <li>チャットサポート無制限</li>
                         <li>宿題・フィードバックあり</li>
                     </ul>
-                    <a href="#apply" class="btn btn-outline btn-block">このコースで申し込む</a>
+                    <a href="apply.html" class="btn btn-outline btn-block">このコースで申し込む</a>
                 </div>
             </div>
 
@@ -583,135 +587,26 @@
         </div>
     </section>
 
-    <!-- Apply Section -->
+    <!-- Apply Section (Redirect) -->
     <section class="apply" id="apply">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Apply</span>
                 <h2 class="section-title">コーチングに<span class="gradient-text">申し込む</span></h2>
-                <p class="section-desc">以下のフォームからお申し込みください。内容確認後、Discordでご連絡いたします。</p>
+                <p class="section-desc">お申し込みは専用フォームから受け付けています。</p>
             </div>
-            <div class="apply-container">
-                <form class="apply-form" id="applyForm">
-                    <div class="form-group">
-                        <label for="name">お名前（ゲーム内ネーム可）</label>
-                        <input type="text" id="name" name="name" required placeholder="例: gosio">
-                    </div>
-                    <div class="form-group">
-                        <label for="discordId">Discord ID (必須)</label>
-                        <input type="text" id="discordId" name="discordId" required placeholder="例: gosio">
-                    </div>
-                    <div class="form-group">
-                        <label for="rank">現在のランク帯</label>
-                        <select id="rank" name="rank" required>
-                            <option value="" disabled selected>選択してください</option>
-                            <option value="iron">アイアン</option>
-                            <option value="bronze">ブロンズ</option>
-                            <option value="silver">シルバー</option>
-                            <option value="gold">ゴールド</option>
-                            <option value="platinum">プラチナ</option>
-                            <option value="diamond">ダイヤモンド</option>
-                            <option value="ascendant">アセンダント</option>
-                            <option value="immortal">イモータル</option>
-                            <option value="radiant">レディアント</option>
-                            <option value="unranked">未ランク / 不明</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="course">希望コース</label>
-                        <select id="course" name="course" required>
-                            <option value="" disabled selected>選択してください</option>
-                            <option value="monthly">月額コース（¥15,000/月）</option>
-                            <option value="basic6">基本6回コース（¥39,800）</option>
-                            <option value="challenge">チャレンジコース（¥78,000）</option>
-                            <option value="custom">マンツーマン付きっきり（要相談）</option>
-                            <option value="undecided">まだ決めていない / 相談したい</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="intensity">希望の強度プラン</label>
-                        <select id="intensity" name="intensity">
-                            <option value="" disabled selected>選択してください</option>
-                            <option value="normal">通常運行</option>
-                            <option value="sparta">スパルタ</option>
-                            <option value="relaxed">ゆるゆる</option>
-                            <option value="undecided">まだ決めていない</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>初回希望日時（3つの候補と、参加可能な時間帯を入力）</label>
-                        <p class="form-note">※初回コーチングは1.5時間程度かかります。時間に余裕のある日時を指定してください。</p>
-
-                        <div class="schedule-rows">
-                            <!-- Candidate 1 -->
-                            <div class="schedule-item">
-                                <label class="sub-label">第1候補</label>
-                                <div class="schedule-inputs">
-                                    <input type="date" name="date1" required>
-                                    <div class="time-range">
-                                        <select name="timeStart1" class="time-select" required>
-                                            <option value="">開始</option>
-                                        </select>
-                                        <span>～</span>
-                                        <select name="timeEnd1" class="time-select" required>
-                                            <option value="">終了</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Candidate 2 -->
-                            <div class="schedule-item">
-                                <label class="sub-label">第2候補</label>
-                                <div class="schedule-inputs">
-                                    <input type="date" name="date2" required>
-                                    <div class="time-range">
-                                        <select name="timeStart2" class="time-select" required>
-                                            <option value="">開始</option>
-                                        </select>
-                                        <span>～</span>
-                                        <select name="timeEnd2" class="time-select" required>
-                                            <option value="">終了</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Candidate 3 -->
-                            <div class="schedule-item">
-                                <label class="sub-label">第3候補</label>
-                                <div class="schedule-inputs">
-                                    <input type="date" name="date3" required>
-                                    <div class="time-range">
-                                        <select name="timeStart3" class="time-select" required>
-                                            <option value="">開始</option>
-                                        </select>
-                                        <span>～</span>
-                                        <select name="timeEnd3" class="time-select" required>
-                                            <option value="">終了</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">その他ご質問・メッセージ（任意）</label>
-                        <textarea id="message" name="message" rows="4"
-                            placeholder="目標ランク、プレイ頻度、気になること等をご自由にお書きください"></textarea>
-                    </div>
-                    <div class="submit-area">
-                        <p class="submit-note">※送信完了画面に、連絡先のDiscord ID（gosio）が表示されます。<br>お手数ですが、そちらへフレンド申請をお願いいたします。</p>
-                        <button type="submit" class="apply-btn" id="submitBtn">
-                            申し込みを送信する
-                            <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
+            <div class="apply-actions" style="text-align: center; margin-top: 40px;">
+                <a href="apply.html" class="btn btn-primary btn-lg">
+                    申し込みフォームへ移動する
+                    <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
             </div>
         </div>
+    </section>
+    </div>
     </section>
 
     <!-- Footer -->
@@ -730,7 +625,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.1"></script>
 </body>
 
 </html>
