@@ -205,6 +205,7 @@ function initForm() {
 
         const formData = {
             name: form.name.value,
+            email: form.email.value,
             discordId: form.discordId.value,
             rank: form.rank.options[form.rank.selectedIndex].text,
             course: form.course.options[form.course.selectedIndex].text,
@@ -237,10 +238,12 @@ function initForm() {
             color: 0xff4655,
             fields: [
                 { name: 'お名前', value: formData.name, inline: true },
+                { name: 'Email', value: formData.email, inline: true },
                 { name: 'Discord', value: formData.discordId, inline: true },
                 { name: 'ランク帯', value: formData.rank, inline: true },
                 { name: '希望コース', value: formData.course, inline: true },
                 { name: '強度プラン', value: formData.intensity, inline: true },
+                { name: '返金ポリシー', value: '同意済み', inline: true },
                 { name: '📅 第1候補 (参加可能)', value: dateStr1, inline: false },
                 { name: '📅 第2候補 (参加可能)', value: dateStr2, inline: false },
                 { name: '📅 第3候補 (参加可能)', value: dateStr3, inline: false },
