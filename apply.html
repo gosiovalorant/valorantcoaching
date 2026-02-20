@@ -222,28 +222,6 @@
             transform: translateY(-1px);
         }
 
-        .open-discord-btn {
-            background: #5865F2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .open-discord-btn:hover {
-            background: #4752c4;
-            transform: translateY(-1px);
-        }
-
         /* Toast notification */
         .toast {
             position: fixed;
@@ -501,7 +479,7 @@
                         </div>
                     </div>
                     <div class="submit-area">
-                        <p class="submit-note">※送信完了画面に、連絡先のDiscord ID（gosio）が表示されます。<br>お手数ですが、そちらへフレンド申請をお願いいたします。
+                        <p class="submit-note">※送信完了画面に、連絡先のDiscord IDが表示されます。<br>お手数ですが、そちらへフレンド申請をお願いいたします。
                         </p>
                         <button type="submit" class="apply-btn" id="submitBtn">
                             申し込みを送信する
@@ -807,7 +785,10 @@
                             <div class="form-success">
                                 <div class="form-success-icon">✓</div>
                                 <h3>お申し込みありがとうございます！</h3>
-                                <p>内容を確認次第、Discordでご連絡いたします。<br>
+                                <p>なんですけど、最後に1ステップあります。<br>
+                                <strong>Discordアプリからフレンド申請を必ずお願いします。</strong></p>
+                                
+                                <p>フレンド申請を確認次第、Discordでご連絡いたします。<br>
                                 通常1〜2日以内にご返信いたします。</p>
 
                                 <p style="margin-top: 2rem;">スムーズな連絡のため、以下のどちらかのIDへ<strong>フレンド申請</strong>を送ってください。</p>
@@ -845,12 +826,11 @@
                                             <li>「ユーザー名で追加」等を選び、上のユーザー名を入力して送信</li>
                                         </ol>
                                     </div>
-                                    <p class="howto-note">
-                                        ※「ユーザー名」は正確に入力してください（コピペ推奨）<br>
-                                        <a href="discord://" class="open-discord-btn">
-                                            <span>Discordを開く</span>
-                                        </a>
+                                    <p class="howto-note" style="margin-top: 2rem; color: #fff !important; font-size: 0.9rem;">
+                                        ※Discordアプリのダウンロードがまだの方はこちら：<br>
+                                        <a href="https://discord.com/download" target="_blank" style="color: #5865F2; text-decoration: underline; font-weight: 700;">Discord公式サイト（ダウンロード）</a>
                                     </p>
+                                    <p class="howto-note">※「ユーザー名」は正確に入力してください（コピペ推奨）</p>
                                 </div>
 
                                 <p class="success-note">
