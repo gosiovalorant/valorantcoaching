@@ -495,117 +495,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>初回希望日時（3つの候補と、参加可能な時間帯を入力）</label>
-                        <p class="form-note">※初回コーチングは1.5時間程度かかります。時間に余裕のある日時を指定してください。</p>
-                        <div class="schedule-rows">
-                            <span class="error-message"
-                                style="margin-bottom: 1rem;">すべての日程（第1〜第3候補のすべて）と時間帯を入力してください</span>
-                            <div class="schedule-item">
-                                <label class="sub-label">第1候補</label>
-                                <div class="schedule-inputs">
-                                    <input type="date" name="date1" required>
-                                    <div class="time-range">
-                                        <select name="timeStart1" class="time-select" required>
-                                            <option value="">開始</option>
-                                        </select>
-                                        <span>～</span>
-                                        <select name="timeEnd1" class="time-select" required>
-                                            <option value="">終了</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="schedule-item">
-                                <label class="sub-label">第2候補</label>
-                                <div class="schedule-inputs">
-                                    <input type="date" name="date2" required>
-                                    <div class="time-range">
-                                        <select name="timeStart2" class="time-select" required>
-                                            <option value="">開始</option>
-                                        </select>
-                                        <span>～</span>
-                                        <select name="timeEnd2" class="time-select" required>
-                                            <option value="">終了</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="schedule-item">
-                                <label class="sub-label">第3候補</label>
-                                <div class="schedule-inputs">
-                                    <input type="date" name="date3" required>
-                                    <div class="time-range">
-                                        <select name="timeStart3" class="time-select" required>
-                                            <option value="">開始</option>
-                                        </select>
-                                        <span>～</span>
-                                        <select name="timeEnd3" class="time-select" required>
-                                            <option value="">終了</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="message">その他ご質問・メッセージ（任意）</label>
                         <textarea id="message" name="message" rows="4"
                             placeholder="目標ランク、プレイ頻度、気になること等をご自由にお書きください"></textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label>返金ポリシー (必須)</label>
-                        <h4>Valorantコーチング 返金ポリシー</h4>
-                        <div class="policy-box">
-                            <p>本ポリシーは、Valorantコーチングサービスに関する返金条件を定めるものです。お申し込みいただいた時点で、本ポリシーに同意いただいたものとみなします。</p>
-
-                            <h5>1. 返金不可の条件</h5>
-                            <p>以下のいずれかに該当する場合、お客様のご都合による途中キャンセルおよび返金は一切受け付けません。</p>
-                            <ul>
-                                <li>お客様のスケジュール変更や都合によるキャンセル</li>
-                                <li>途中でのコーチング内容への不満</li>
-                                <li>インターネット環境やデバイスの問題によりセッションを正常に受講できない場合</li>
-                                <li>一度提供されたコーチングセッションの返金要求</li>
-                                <li>チート行為・不正行為などが確認された場合</li>
-                            </ul>
-
-                            <h5>2. 返金が適用される条件</h5>
-                            <p>以下の条件に該当する場合、未提供分のコーチング料金を返金いたします。</p>
-                            <ul>
-                                <li>コーチ側の都合により、サービスを正常に提供できなかった場合（体調不良、急用など）</li>
-                                <li>天災やサーバートラブルなど、外的要因によりサービス提供が困難となった場合</li>
-                                <li>その他、運営側が合理的と判断した場合</li>
-                            </ul>
-
-                            <h5>3. 返金申請方法</h5>
-                            <p>返金対象となる場合、お客様は以下の手順で返金申請を行ってください。</p>
-                            <ul>
-                                <li>返金申請の理由を明記し、Discordのメッセージまたは指定の連絡方法にてご連絡ください。</li>
-                                <li>申請内容を確認後、7営業日以内に対応可否をお知らせいたします。</li>
-                                <li>承認された場合、指定の決済方法に基づき、未提供分の残額を返金いたします。</li>
-                            </ul>
-
-                            <h5>4. 免責事項</h5>
-                            <p>本サービスは、お客様のゲームスキル向上を目的として提供されますが、特定の結果（ランクアップ、特定スキルの習得等）を保証するものではありません。また、コーチングの効果には個人差があるため、効果の有無を理由とした返金はお受けできません。
-                            </p>
-                            <p>本ポリシーは、必要に応じて予告なく変更される場合がありますので、ご了承ください。</p>
-
-                            <h5>お問い合わせ先</h5>
-                            <p>返金に関するご質問は、事前にお問い合わせください。</p>
-                        </div>
-                        <div class="form-group">
-                            <div class="policy-check">
-                                <label class="checkbox-label" for="policyAgree">
-                                    <input type="checkbox" id="policyAgree" required>
-                                    返金ポリシーに同意します (必須)
-                                </label>
-                            </div>
-                            <span class="error-message">返金ポリシーへの同意が必要です</span>
-                        </div>
-                    </div>
                     <div class="submit-area">
-                        <p class="submit-note">※送信完了画面に、連絡先のDiscord IDが表示されます。<br>お手数ですが、そちらへフレンド申請をお願いいたします。
-                        </p>
+                        <p class="submit-note">※送信完了画面に、連絡先のDiscord IDが表示されます。<br>お手数ですが、そちらへフレンド申請をお願いいたします。</p>
                         <button type="submit" class="apply-btn" id="submitBtn">
                             申し込みを送信する
                             <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -795,29 +690,8 @@
                     }
                 });
 
-                // Check Schedule (All 3 mandatory)
-                const scheduleInputs = form.querySelectorAll('.schedule-inputs input, .schedule-inputs select');
-                let scheduleValid = true;
-                scheduleInputs.forEach(input => {
-                    if (!input.value || (input.tagName === 'SELECT' && input.selectedIndex === 0)) {
-                        scheduleValid = false;
-                    }
-                });
-                if (!scheduleValid) {
-                    isValid = false;
-                    const rows = form.querySelector('.schedule-rows');
-                    if (rows) rows.classList.add('has-error');
-                    if (!firstErrorEl) firstErrorEl = rows;
-                } else {
-                    const rows = form.querySelector('.schedule-rows');
-                    if (rows) rows.classList.add('has-success');
-                }
 
-                // Check Policy
-                const policyAgree = document.getElementById('policyAgree');
-                if (!policyAgree || !policyAgree.checked) {
-                    setError(policyAgree, '.form-group');
-                }
+
 
                 if (!isValid) {
                     if (firstErrorEl) {
@@ -841,21 +715,8 @@
                     intensity: form.intensity.selectedIndex > 0
                         ? form.intensity.options[form.intensity.selectedIndex].text
                         : '未選択',
-                    date1: form.date1.value,
-                    timeStart1: form.timeStart1.value,
-                    timeEnd1: form.timeEnd1.value,
-                    date2: form.date2.value,
-                    timeStart2: form.timeStart2.value,
-                    timeEnd2: form.timeEnd2.value,
-                    date3: form.date3.value,
-                    timeStart3: form.timeStart3.value,
-                    timeEnd3: form.timeEnd3.value,
                     message: form.message.value || 'なし',
                 };
-
-                const dateStr1 = formData.date1 + (formData.timeStart1 ? ` ${formData.timeStart1}〜${formData.timeEnd1}` : '');
-                const dateStr2 = formData.date2 ? (formData.date2 + (formData.timeStart2 ? ` ${formData.timeStart2}〜${formData.timeEnd2}` : '')) : 'なし';
-                const dateStr3 = formData.date3 ? (formData.date3 + (formData.timeStart3 ? ` ${formData.timeStart3}〜${formData.timeEnd3}` : '')) : 'なし';
 
                 const embed = {
                     title: '🎮 新しいコーチング申し込み',
@@ -867,10 +728,6 @@
                         { name: 'ランク帯', value: formData.rank, inline: true },
                         { name: '希望コース', value: formData.course, inline: true },
                         { name: '強度プラン', value: formData.intensity, inline: true },
-                        { name: '返金ポリシー', value: '同意済み', inline: true },
-                        { name: '📅 第1候補 (参加可能)', value: dateStr1, inline: false },
-                        { name: '📅 第2候補 (参加可能)', value: dateStr2, inline: false },
-                        { name: '📅 第3候補 (参加可能)', value: dateStr3, inline: false },
                         { name: 'メッセージ', value: formData.message },
                     ],
                     timestamp: new Date().toISOString(),
@@ -901,6 +758,9 @@
                     const applyContainer = document.querySelector('.apply-container');
                     const sectionHeader = document.querySelector('.section-header');
                     if (applyContainer) applyContainer.style.display = 'none';
+                    // Robustly hide form elements in case of structural issues
+                    const applyForm = document.getElementById('applyForm');
+                    if (applyForm) applyForm.style.display = 'none';
                     if (sectionHeader) sectionHeader.style.display = 'none';
 
                     // Create success message element
