@@ -62,13 +62,87 @@
             margin-bottom: 8px;
         }
 
+        /* === Form Group & Validation === */
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .error-message {
+            display: none;
+            color: #ff4655;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group.has-error input,
+        .form-group.has-error select,
+        .form-group.has-error textarea {
+            border-color: #ff4655 !important;
+            background-color: rgba(255, 70, 85, 0.05);
+        }
+
+        .form-group.has-success input,
+        .form-group.has-success select,
+        .form-group.has-success textarea {
+            border-color: #00d4aa !important;
+            background-color: rgba(0, 212, 170, 0.05);
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+        }
+
+        .schedule-rows.has-error {
+            border: 1px solid #ff4655;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: rgba(255, 70, 85, 0.05);
+        }
+
+        .schedule-rows.has-success {
+            border: 1px solid #00d4aa;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: rgba(0, 212, 170, 0.05);
+        }
+
+        .schedule-rows.has-error .error-message {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Fix for select text visibility */
+        .form-group.has-error select {
+            color: #e8e8ed;
+        }
+
+        /* Ensure options remain readable */
+        select option {
+            background-color: #16161f;
+            /* --color-bg-card */
+            color: #e8e8ed;
+        }
+
         .policy-check {
             display: flex;
             align-items: center;
-            background: rgba(0, 212, 170, 0.05);
+            background: var(--color-bg-card);
             padding: 16px;
             border-radius: 8px;
-            border: 1px solid rgba(0, 212, 170, 0.2);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .policy-check:has(input:checked) {
+            background: rgba(0, 212, 170, 0.05);
+            border-color: rgba(0, 212, 170, 0.4);
+        }
+
+        .form-group.has-error .policy-check {
+            border-color: #ff4655 !important;
+            background-color: rgba(255, 70, 85, 0.05);
         }
 
         .checkbox-label {
@@ -86,6 +160,109 @@
             accent-color: #ff4655;
             cursor: pointer;
             margin: 0;
+        }
+
+        /* === Success Message Styles === */
+        .discord-id-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .discord-id-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 56px;
+        }
+
+        .discord-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            white-space: nowrap;
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .discord-id {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            flex-grow: 1;
+            text-align: center;
+            word-break: break-all;
+            line-height: 1.2;
+            padding: 0 4px;
+        }
+
+        .copy-btn {
+            background: #ff4655;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            width: 70px;
+        }
+
+        .copy-btn:hover {
+            background: #ff5e6a;
+            transform: translateY(-1px);
+        }
+
+        .discord-howto {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .discord-howto h4 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .discord-howto-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .discord-howto-section h5 {
+            color: #ff4655;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .discord-howto ol {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .discord-howto li {
+            margin-bottom: 0.5rem;
+        }
+
+        .howto-note {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5) !important;
+            margin-top: 1rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -113,18 +290,21 @@
             </div>
 
             <div class="apply-container">
-                <form class="apply-form" id="applyForm">
+                <form class="apply-form" id="applyForm" novalidate>
                     <div class="form-group">
                         <label for="name">お名前 (ハンドルネーム可)</label>
                         <input type="text" id="name" name="name" required placeholder="例: gosio">
+                        <span class="error-message">お名前を入力してください</span>
                     </div>
                     <div class="form-group">
                         <label for="email">メールアドレス (必須)</label>
                         <input type="email" id="email" name="email" required placeholder="例: your-email@example.com">
+                        <span class="error-message">有効なメールアドレスを入力してください</span>
                     </div>
                     <div class="form-group">
                         <label for="discordId">Discord ID (必須)</label>
-                        <input type="text" id="discordId" name="discordId" required placeholder="例: gosio">
+                        <input type="text" id="discordId" name="discordId" required placeholder="例: test#0000">
+                        <span class="error-message">Discord IDを入力してください</span>
                     </div>
                     <div class="form-group">
                         <label for="rank">現在のランク帯</label>
@@ -141,6 +321,7 @@
                             <option value="radiant">レディアント</option>
                             <option value="unranked">未ランク / 不明</option>
                         </select>
+                        <span class="error-message">ランクを選択してください</span>
                     </div>
                     <div class="form-group">
                         <label for="course">希望コース</label>
@@ -152,6 +333,7 @@
                             <option value="custom">マンツーマン付きっきり（要相談）</option>
                             <option value="undecided">まだ決めていない / 相談したい</option>
                         </select>
+                        <span class="error-message">希望コースを選択してください</span>
                     </div>
                     <div class="form-group">
                         <label for="intensity">希望の強度プラン</label>
@@ -167,6 +349,8 @@
                         <label>初回希望日時（3つの候補と、参加可能な時間帯を入力）</label>
                         <p class="form-note">※初回コーチングは1.5時間程度かかります。時間に余裕のある日時を指定してください。</p>
                         <div class="schedule-rows">
+                            <span class="error-message"
+                                style="margin-bottom: 1rem;">すべての日程（第1〜第3候補のすべて）と時間帯を入力してください</span>
                             <div class="schedule-item">
                                 <label class="sub-label">第1候補</label>
                                 <div class="schedule-inputs">
@@ -260,11 +444,14 @@
                             <h5>お問い合わせ先</h5>
                             <p>返金に関するご質問は、事前にお問い合わせください。</p>
                         </div>
-                        <div class="policy-check">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="policyAgree" required>
-                                <span>上記の返金ポリシーを読み、同意します</span>
-                            </label>
+                        <div class="form-group">
+                            <div class="policy-check">
+                                <label class="checkbox-label" for="policyAgree">
+                                    <input type="checkbox" id="policyAgree" required>
+                                    返金ポリシーに同意します (必須)
+                                </label>
+                            </div>
+                            <span class="error-message">返金ポリシーへの同意が必要です</span>
                         </div>
                     </div>
                     <div class="submit-area">
@@ -301,32 +488,311 @@
     </footer>
 
     <script>
-        // Inline script to populate time selects immediately to avoid cache issues
         document.addEventListener('DOMContentLoaded', () => {
-            const selects = document.querySelectorAll('.time-select');
-            if (selects.length === 0) return;
-
-            let optionsHtml = '';
-            for (let i = 6; i <= 29; i++) {
-                const hour = i;
-                // Use hourStr for display if desired, but keeping original logic for consistency with value
-                optionsHtml += `<option value="${hour}:00">${hour}:00</option>`;
-                if (i !== 29) {
-                    optionsHtml += `<option value="${hour}:30">${hour}:30</option>`;
-                }
-            }
-
-            selects.forEach(select => {
-                // Skip if already populated (in case external script runs properly too)
-                if (select.options.length > 1) return;
-
-                const isStart = select.name.includes('Start');
-                const defaultText = isStart ? '〜時から' : '〜時まで';
-                select.innerHTML = `<option value="" disabled selected>${defaultText}</option>` + optionsHtml;
-            });
+            initForm();
         });
+
+        /* === Form handling with Discord webhook === */
+        function initForm() {
+            const form = document.getElementById('applyForm');
+            if (!form) return;
+
+            const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1473819922378260551/a2sGx1DJjerrGDqxc2L1vZ06gjk2-icR6QoKHQo73rpTQihyzSNV40-GXmURWyCgMMVS';
+            const COACH_DISCORD_ID = 'gosio';
+
+            // Populate time selects with 30-minute intervals (06:00 - 29:00)
+            const populateTimeSelects = () => {
+                const selects = document.querySelectorAll('.time-select');
+                if (selects.length === 0) return;
+
+                let optionsHtml = '';
+                for (let i = 6; i <= 29; i++) {
+                    const hour = i;
+                    optionsHtml += `<option value="${hour}:00">${hour}:00</option>`;
+                    if (i !== 29) {
+                        optionsHtml += `<option value="${hour}:30">${hour}:30</option>`;
+                    }
+                }
+
+                selects.forEach(select => {
+                    const isStart = select.name.includes('Start');
+                    const defaultText = isStart ? '〜時から' : '〜時まで';
+                    select.innerHTML = `<option value="" disabled selected>${defaultText}</option>` + optionsHtml;
+                });
+            };
+            populateTimeSelects();
+
+            const validateField = (el) => {
+                const group = el.closest('.form-group');
+                if (!group) return;
+
+                const isEmail = el.type === 'email';
+                const emailValid = isEmail ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value) : true;
+                const isValid = el.value && (el.tagName !== 'SELECT' || el.selectedIndex !== 0) && el.checkValidity() && emailValid;
+            };
+
+            const validateSchedule = () => {
+                const rows = form.querySelector('.schedule-rows');
+                if (!rows) return;
+
+                const inputs = rows.querySelectorAll('input, select');
+                let allFilled = true;
+                inputs.forEach(input => {
+                    if (!input.value || (input.tagName === 'SELECT' && input.selectedIndex === 0)) {
+                        allFilled = false;
+                    }
+                });
+
+                if (allFilled) {
+                    rows.classList.add('has-success');
+                    rows.classList.remove('has-error');
+                } else {
+                    rows.classList.remove('has-success');
+                }
+            };
+
+            // Add listeners for real-time feedback
+            form.querySelectorAll('input, select, textarea').forEach(el => {
+                el.addEventListener('input', () => {
+                    if (el.id === 'policyAgree') {
+                        // handled by existing CSS :has
+                    } else if (el.closest('.schedule-rows')) {
+                        validateSchedule();
+                    } else {
+                        validateField(el);
+                    }
+                });
+                el.addEventListener('change', () => {
+                    if (el.closest('.schedule-rows')) validateSchedule();
+                    else validateField(el);
+                });
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Reset states
+                const groups = form.querySelectorAll('.form-group');
+                groups.forEach(g => {
+                    g.classList.remove('has-error');
+                    g.classList.remove('has-success');
+                });
+                const scheduleRows = form.querySelector('.schedule-rows');
+                if (scheduleRows) {
+                    scheduleRows.classList.remove('has-error');
+                    scheduleRows.classList.remove('has-success');
+                }
+
+                // Validation
+                let isValid = true;
+                let firstErrorEl = null;
+
+                const setError = (el, parentSelector) => {
+                    isValid = false;
+                    const parent = el.closest(parentSelector);
+                    if (parent) {
+                        parent.classList.add('has-error');
+                        parent.classList.remove('has-success');
+                    }
+                    if (!firstErrorEl) firstErrorEl = parent || el;
+                };
+
+                const setSuccess = (el, parentSelector) => {
+                    const parent = el.closest(parentSelector);
+                    if (parent && !parent.classList.contains('has-error')) {
+                        parent.classList.add('has-success');
+                    }
+                };
+
+                // Check standard fields
+                ['name', 'email', 'discordId', 'rank', 'course', 'intensity'].forEach(id => {
+                    const el = form[id];
+                    if (!el) return;
+
+                    const isEmail = el.type === 'email';
+                    const emailValid = isEmail ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value) : true;
+                    const isValidField = el.value && (el.tagName !== 'SELECT' || el.selectedIndex !== 0) && el.checkValidity() && emailValid;
+
+                    if (!isValidField) {
+                        if (id !== 'intensity') setError(el, '.form-group');
+                    } else {
+                        setSuccess(el, '.form-group');
+                    }
+                });
+
+                // Check Schedule (All 3 mandatory)
+                const scheduleInputs = form.querySelectorAll('.schedule-inputs input, .schedule-inputs select');
+                let scheduleValid = true;
+                scheduleInputs.forEach(input => {
+                    if (!input.value || (input.tagName === 'SELECT' && input.selectedIndex === 0)) {
+                        scheduleValid = false;
+                    }
+                });
+                if (!scheduleValid) {
+                    isValid = false;
+                    const rows = form.querySelector('.schedule-rows');
+                    if (rows) rows.classList.add('has-error');
+                    if (!firstErrorEl) firstErrorEl = rows;
+                } else {
+                    const rows = form.querySelector('.schedule-rows');
+                    if (rows) rows.classList.add('has-success');
+                }
+
+                // Check Policy
+                const policyAgree = document.getElementById('policyAgree');
+                if (!policyAgree || !policyAgree.checked) {
+                    setError(policyAgree, '.form-group');
+                }
+
+                if (!isValid) {
+                    if (firstErrorEl) {
+                        firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+
+                // If valid, proceed with submission
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '送信中...';
+                submitBtn.disabled = true;
+
+                const formData = {
+                    name: form.name.value,
+                    email: form.email.value,
+                    discordId: form.discordId.value,
+                    rank: form.rank.options[form.rank.selectedIndex].text,
+                    course: form.course.options[form.course.selectedIndex].text,
+                    intensity: form.intensity.selectedIndex > 0
+                        ? form.intensity.options[form.intensity.selectedIndex].text
+                        : '未選択',
+                    date1: form.date1.value,
+                    timeStart1: form.timeStart1.value,
+                    timeEnd1: form.timeEnd1.value,
+                    date2: form.date2.value,
+                    timeStart2: form.timeStart2.value,
+                    timeEnd2: form.timeEnd2.value,
+                    date3: form.date3.value,
+                    timeStart3: form.timeStart3.value,
+                    timeEnd3: form.timeEnd3.value,
+                    message: form.message.value || 'なし',
+                };
+
+                const dateStr1 = formData.date1 + (formData.timeStart1 ? ` ${formData.timeStart1}〜${formData.timeEnd1}` : '');
+                const dateStr2 = formData.date2 ? (formData.date2 + (formData.timeStart2 ? ` ${formData.timeStart2}〜${formData.timeEnd2}` : '')) : 'なし';
+                const dateStr3 = formData.date3 ? (formData.date3 + (formData.timeStart3 ? ` ${formData.timeStart3}〜${formData.timeEnd3}` : '')) : 'なし';
+
+                const embed = {
+                    title: '🎮 新しいコーチング申し込み',
+                    color: 0xff4655,
+                    fields: [
+                        { name: 'お名前', value: formData.name, inline: true },
+                        { name: 'Email', value: formData.email, inline: true },
+                        { name: 'Discord', value: formData.discordId, inline: true },
+                        { name: 'ランク帯', value: formData.rank, inline: true },
+                        { name: '希望コース', value: formData.course, inline: true },
+                        { name: '強度プラン', value: formData.intensity, inline: true },
+                        { name: '返金ポリシー', value: '同意済み', inline: true },
+                        { name: '📅 第1候補 (参加可能)', value: dateStr1, inline: false },
+                        { name: '📅 第2候補 (参加可能)', value: dateStr2, inline: false },
+                        { name: '📅 第3候補 (参加可能)', value: dateStr3, inline: false },
+                        { name: 'メッセージ', value: formData.message },
+                    ],
+                    timestamp: new Date().toISOString(),
+                };
+
+                let success = false;
+                if (DISCORD_WEBHOOK_URL) {
+                    try {
+                        const response = await fetch(DISCORD_WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                content: '@here 新しいコーチング申し込みが届きました！',
+                                embeds: [embed],
+                            }),
+                        });
+                        success = response.ok;
+                    } catch (err) {
+                        console.error('Webhook error:', err);
+                        success = false;
+                    }
+                } else {
+                    success = true;
+                }
+
+                if (success) {
+                    // Hide entire application container and header instructions
+                    const applyContainer = document.querySelector('.apply-container');
+                    const sectionHeader = document.querySelector('.section-header');
+                    if (applyContainer) applyContainer.style.display = 'none';
+                    if (sectionHeader) sectionHeader.style.display = 'none';
+
+                    // Create success message element
+                    const successOverlay = document.createElement('div');
+                    successOverlay.className = 'apply-container';
+                    successOverlay.innerHTML = `
+                            <div class="form-success">
+                                <div class="form-success-icon">✓</div>
+                                <h3>お申し込みありがとうございます！</h3>
+                                <p>内容を確認次第、Discordでご連絡いたします。<br>
+                                通常1〜2日以内にご返信いたします。</p>
+
+                                <p style="margin-top: 2rem;">スムーズな連絡のため、以下のどちらかのIDへ<strong>フレンド申請</strong>を送ってください。</p>
+                                
+                                <div class="discord-id-wrapper">
+                                    <div class="discord-id-box">
+                                        <span class="discord-label">ユーザー名:</span>
+                                        <span class="discord-id">gosio</span>
+                                        <button type="button" class="copy-btn" onclick="navigator.clipboard.writeText('gosio').then(()=>alert('コピーしました！'))">コピー</button>
+                                    </div>
+                                    <div class="discord-id-box">
+                                        <span class="discord-label">ユーザーID:</span>
+                                        <span class="discord-id">393437223351222272</span>
+                                        <button type="button" class="copy-btn" onclick="navigator.clipboard.writeText('393437223351222272').then(()=>alert('コピーしました！'))">コピー</button>
+                                    </div>
+                                </div>
+
+                                <div class="discord-howto">
+                                    <h4>Discordフレンド申請のやり方</h4>
+                                    
+                                    <div class="discord-howto-section">
+                                        <h5>🖥️ PC / ブラウザ</h5>
+                                        <ol>
+                                            <li>左上のDiscordロゴを押す</li>
+                                            <li>「フレンド」タブ → 「フレンドに追加」ボタンを押す</li>
+                                            <li>上のユーザー名を入力して「フレンド申請を送信」</li>
+                                        </ol>
+                                    </div>
+
+                                    <div class="discord-howto-section">
+                                        <h5>📱 スマホ</h5>
+                                        <ol>
+                                            <li>アプリ左下のナビゲーション または 左上のチャットバブル💬をタップ</li>
+                                            <li>「フレンドを追加」をタップ（右上の人型アイコンなど）</li>
+                                            <li>「ユーザー名で追加」等を選び、上のユーザー名を入力して送信</li>
+                                        </ol>
+                                    </div>
+                                    <p class="howto-note">※「ユーザー名」は正確に入力してください（コピペ推奨）</p>
+                                </div>
+
+                                <p class="success-note">
+                                    ※申請が届き次第、承認して詳細をご案内します。<br>
+                                    もしこちらに申請がこない場合は、ご入力いただいたID、もしくはメールアドレスへこちらから連絡します。<br>
+                                    (ページを更新するとフォームが再表示されてしまいますのでご注意ください）
+                                </p>
+                            </div>
+                        `;
+                    document.querySelector('.apply .container').appendChild(successOverlay);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    alert('送信に失敗しました。お手数ですが、XのDM (@fps_user01) から直接ご連絡ください。');
+                }
+            });
+        }
     </script>
-    <script src="script.js?v=2.0"></script>
 </body>
 
 </html>
