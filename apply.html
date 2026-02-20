@@ -222,6 +222,101 @@
             transform: translateY(-1px);
         }
 
+        /* Step Section Styles */
+        .step-section {
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-badge {
+            background: #ff4655;
+            color: white;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .step-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .step-desc {
+            color: #ece8e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .step-note {
+            display: block;
+            color: #ff4655;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .step-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .step-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        @media (max-width: 768px) {
+            .step-buttons {
+                flex-direction: column;
+            }
+
+            .step-btn {
+                max-width: 100%;
+            }
+        }
+
+        .step-btn.primary {
+            background: #5865F2;
+            color: white;
+        }
+
+        .step-btn.primary:hover {
+            background: #4752c4;
+            transform: translateY(-2px);
+        }
+
+        .step-btn.secondary {
+            background: #2f3136;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-btn.secondary:hover {
+            background: #36393f;
+            transform: translateY(-2px);
+        }
+
         /* Toast notification */
         .toast {
             position: fixed;
@@ -314,6 +409,36 @@
             </div>
 
             <div class="apply-container">
+                <!-- STEP 1: Join Server -->
+                <div class="step-section">
+                    <div class="step-header">
+                        <span class="step-badge">STEP 1</span>
+                        <h3>Discordサーバーへ参加</h3>
+                    </div>
+                    <div class="step-content">
+                        <p class="step-desc">
+                            お申し込みの前に、以下のボタンから専用サーバーへ参加してください。<br>
+                            <span class="step-note">※サーバー参加後、下のフォームよりお申し込みください。</span>
+                        </p>
+                        <div class="step-buttons">
+                            <a href="https://discord.com/download" target="_blank" class="step-btn secondary">
+                                Discordをダウンロード
+                            </a>
+                            <a href="https://discord.gg/xWh2qmTshc" target="_blank" class="step-btn primary">
+                                サーバーに参加する
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Application Form -->
+                <div class="step-section">
+                    <div class="step-header">
+                        <span class="step-badge">STEP 2</span>
+                        <h3>お申込みフォーム入力</h3>
+                    </div>
+                </div>
+
                 <form class="apply-form" id="applyForm" novalidate>
                     <div class="form-group">
                         <label for="name">お名前 (ハンドルネーム可)</label>
@@ -783,15 +908,13 @@
                     successOverlay.className = 'apply-container';
                     successOverlay.innerHTML = `
                             <div class="form-success">
-                                <div class="form-success-icon">✓</div>
-                                <h3>お申し込みありがとうございます！</h3>
-                                <p>なんですけど、最後に1ステップあります。<br>
-                                <strong>Discordアプリからフレンド申請を必ずお願いします。</strong></p>
-                                
-                                <p>フレンド申請を確認次第、Discordでご連絡いたします。<br>
-                                通常1〜2日以内にご返信いたします。</p>
-
-                                <p style="margin-top: 2rem;">スムーズな連絡のため、以下のどちらかのIDへ<strong>フレンド申請</strong>を送ってください。</p>
+                                <div class="step-header" style="justify-content: center; margin-bottom: 2rem;">
+                                    <span class="step-badge">STEP 3</span>
+                                    <h3 style="margin: 0;">フレンド申請を送る</h3>
+                                </div>
+                                <p>フォームの送信が完了しました！<br>
+                                最後に、以下の<strong>どちらかのID</strong>へフレンド申請を送ってください。<br>
+                                <span style="font-size: 0.9em; color: #ece8e1;">（どちらでも大丈夫です！）</span></p>
                                 
                                 <div class="discord-id-wrapper">
                                     <div class="discord-id-box">
@@ -826,10 +949,6 @@
                                             <li>「ユーザー名で追加」等を選び、上のユーザー名を入力して送信</li>
                                         </ol>
                                     </div>
-                                    <p class="howto-note" style="margin-top: 2rem; color: #fff !important; font-size: 0.9rem;">
-                                        ※Discordアプリのダウンロードがまだの方はこちら：<br>
-                                        <a href="https://discord.com/download" target="_blank" style="color: #5865F2; text-decoration: underline; font-weight: 700;">Discord公式サイト（ダウンロード）</a>
-                                    </p>
                                     <p class="howto-note">※「ユーザー名」は正確に入力してください（コピペ推奨）</p>
                                 </div>
 
