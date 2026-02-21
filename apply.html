@@ -473,6 +473,14 @@
                         <span class="error-message">ランクを選択してください</span>
                     </div>
                     <div class="form-group">
+                        <label for="max_rank">最高ランク (オプション)</label>
+                        <input type="text" id="max_rank" name="max_rank" placeholder="例: ダイヤモンド1">
+                    </div>
+                    <div class="form-group">
+                        <label for="agents">使用エージェント (オプション)</label>
+                        <input type="text" id="agents" name="agents" placeholder="例: ジェット、オーメン">
+                    </div>
+                    <div class="form-group">
                         <label for="course">希望コース</label>
                         <select id="course" name="course" required>
                             <option value="" disabled selected>選択してください</option>
@@ -711,6 +719,8 @@
                     email: form.email.value,
                     discordId: form.discordId.value,
                     rank: form.rank.options[form.rank.selectedIndex].text,
+                    max_rank: form.max_rank.value || '未入力',
+                    agents: form.agents.value || '未入力',
                     course: form.course.options[form.course.selectedIndex].text,
                     intensity: form.intensity.selectedIndex > 0
                         ? form.intensity.options[form.intensity.selectedIndex].text
@@ -718,39 +728,23 @@
                     message: form.message.value || 'なし',
                 };
 
-                const embed = {
-                    title: '🎮 新しいコーチング申し込み',
-                    color: 0xff4655,
-                    fields: [
-                        { name: 'お名前', value: formData.name, inline: true },
-                        { name: 'Email', value: formData.email, inline: true },
-                        { name: 'Discord', value: formData.discordId, inline: true },
-                        { name: 'ランク帯', value: formData.rank, inline: true },
-                        { name: '希望コース', value: formData.course, inline: true },
-                        { name: '強度プラン', value: formData.intensity, inline: true },
-                        { name: 'メッセージ', value: formData.message },
-                    ],
-                    timestamp: new Date().toISOString(),
-                };
-
                 let success = false;
-                if (DISCORD_WEBHOOK_URL) {
-                    try {
-                        const response = await fetch(DISCORD_WEBHOOK_URL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                content: '@here 新しいコーチング申し込みが届きました！',
-                                embeds: [embed],
-                            }),
-                        });
-                        success = response.ok;
-                    } catch (err) {
-                        console.error('Webhook error:', err);
-                        success = false;
+                let errorMsg = 'サーバーとの通信に失敗しました。';
+                try {
+                    const response = await fetch('http://localhost:8000/api/apply', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData),
+                    });
+                    success = response.ok;
+                    if (!success) {
+                        const errData = await response.json();
+                        errorMsg = errData.error || '不明なエラーが発生しました。';
                     }
-                } else {
-                    success = true;
+                } catch (err) {
+                    console.error('CRM API error:', err);
+                    errorMsg = 'サーバーが起動していないか、接続できません。';
+                    success = false;
                 }
 
                 if (success) {
@@ -758,9 +752,6 @@
                     const applyContainer = document.querySelector('.apply-container');
                     const sectionHeader = document.querySelector('.section-header');
                     if (applyContainer) applyContainer.style.display = 'none';
-                    // Robustly hide form elements in case of structural issues
-                    const applyForm = document.getElementById('applyForm');
-                    if (applyForm) applyForm.style.display = 'none';
                     if (sectionHeader) sectionHeader.style.display = 'none';
 
                     // Create success message element
@@ -822,9 +813,9 @@
                     document.querySelector('.apply .container').appendChild(successOverlay);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
+                    alert('エラーが発生しました：\n' + errorMsg);
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    alert('送信に失敗しました。お手数ですが、XのDM (@fps_user01) から直接ご連絡ください。');
                 }
             });
         }
